@@ -41,7 +41,11 @@ window.onscroll=function(){
 	var t = box[1].offsetTop;
 	// 获取元素父容器(父容器同上)
 	var p = box[1].offsetParent;
-	console.log(iScrollTop,clientHeight,h,l,t,p);	
+	// 获取元素的父元素(对IE)
+	var parentElement = box[1].parentElement;
+	// 对w3c
+	var parentNode = box[1].parentNode;
+	console.log(iScrollTop,clientHeight,h,l,'top:',t,p,'parentElement:',parentElement,parentNode);	
 
 
 }
