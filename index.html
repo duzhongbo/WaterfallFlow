@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>判断</title>
+</head>
+<body>
+	
+<style type="text/css">
+.wrap{width:100px;background-color:#ccc;margin:0 auto;}
+.box{width:100px;height:100px;background-color:#333;margin-bottom:10px;font-size:30px;text-align:center;color:#fff;}
+</style>
+
+<div class="wrap">
+	<div class="box">1</div>
+	<div class="box">2</div>
+	<div class="box">3</div>
+	<div class="box">4</div>
+	<div class="box">5</div>
+	<div class="box">6</div>
+	<div class="box">7</div>
+	<div class="box">8</div>
+	<div class="box">9</div>
+	<div class="box">10</div>
+	<div class="box">11</div>
+</div>
+
+<script type="text/javascript">
+var box = document.querySelectorAll('.box');
+
+window.onscroll=function(){
+	// 被卷到浏览器可视区上方的高度
+	var iScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+	// 浏览器可视区的高度
+	var clientHeight = document.documentElement.clientHeight;
+	// 获取元素的高度
+	var h = box[1].offsetHeight;
+	// 获取元素距离父容器左侧的距离(父容器指元素的第一个使用了相对或绝对定位的父元素，如果没有就是body元素)
+	var l = box[1].offsetLeft;
+	// 获取元素距离父容器顶部的距离(父容器同上)
+	var t = box[1].offsetTop;
+	// 获取元素父容器(父容器同上)
+	var p = box[1].offsetParent;
+	console.log(iScrollTop,clientHeight,h,l,t,p);	
+
+
+}
+
+</script>
+
+</body>
+</html>
