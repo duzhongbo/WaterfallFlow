@@ -8,7 +8,7 @@
 	
 <style type="text/css">
 body{margin:0;padding:0;}
-.wrap{width:880px;margin:0 auto;overflow:hidden;padding:0 10px;background-color:#ccc;}
+.wrap{width:880px;margin:0 auto;overflow:hidden;padding-left:10px;background-color:#ccc;}
 .wrap-col{width:100px;float:left;margin-right:10px;}
 </style>
 
@@ -41,6 +41,36 @@ function dealWidthName(num){
 		return 'P_'+num+'.jpg';
 	}
 }
+// 判断当前列的下标是否在可视区
+function judegBottom(dom){
+	// 被卷到浏览器可视区上方的高度
+	var iScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+	// 浏览器可视区的高度
+	var clientHeight = document.documentElement.clientHeight;
+	// 显示过的文档的高度
+	var docH = iScrollTop + clientHeight;
+	// 获取元素的高度
+	var h = dom.offsetHeight;
+	// 获取元素距离父容器顶部的距离(父容器同上)
+	var t = dom.offsetTop;
+	// 元素下标距离body的距离
+	var domH = h + t;
+	
+	if(iScrollTop<domH&&domH<docH){
+		return true;// 需要记载新数据
+	}else{
+		return false;// 不加载新数据
+	}
+}
+// 整体判断全部列中是否包含未填满的列
+function judegBottomAll(){
+	for(var i=0;i<8;i++){
+		if(judegBottom(col[i])){
+			return true;
+		}
+	}
+	return false;
+}
 // 每屏填充8*7张图片
 function fill(){
 	for(var j=0;j<7;j++){
@@ -51,7 +81,14 @@ function fill(){
 	}
 }
 fill();
-
+// 滚动监控
+window.onscroll=function(){
+	setTimeout(function(){
+		if(judegBottomAll()){
+			fill();
+		}
+	},1000);
+}
 
 </script>
 
