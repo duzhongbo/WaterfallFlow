@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>html5</title>
+</head>
+<body>
+	
+<style type="text/css">
+body{margin:0;padding:0;}
+.wrap{width:880px;margin:0 auto;overflow:hidden;padding:0 10px;background-color:#ccc;}
+.wrap-col{width:100px;float:left;margin-right:10px;}
+</style>
+
+
+<div class="wrap">
+	<div class="wrap-col"></div>
+	<div class="wrap-col"></div>
+	<div class="wrap-col"></div>
+	<div class="wrap-col"></div>
+	<div class="wrap-col"></div>
+	<div class="wrap-col"></div>
+	<div class="wrap-col"></div>
+	<div class="wrap-col"></div>
+</div>
+
+<script type="text/javascript">
+// 图片地址： http://cued.xunlei.com/demos/publ/img/P_007.jpg
+var col = document.querySelectorAll('.wrap-col');
+var max = 999;
+var index = 0;
+// 图片名称处理
+function dealWidthName(num){
+	if(num<10){
+		return 'P_00'+num+'.jpg';
+	}
+	if(num>9&&num<100){
+		return 'P_0'+num+'.jpg';
+	}
+	if(num>99&&num<1000){
+		return 'P_'+num+'.jpg';
+	}
+}
+// 每屏填充8*7张图片
+function fill(){
+	for(var j=0;j<7;j++){
+		for(var i=0;i<8;i++){
+			col[i].innerHTML+='<img src="http://cued.xunlei.com/demos/publ/img/'+dealWidthName(index)+'" width="100">';
+			index++;
+		}		
+	}
+}
+fill();
+
+
+</script>
+
+</body>
+</html>
